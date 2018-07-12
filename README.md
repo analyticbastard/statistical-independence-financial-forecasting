@@ -10,6 +10,10 @@ The BTC price timeseries is forecastable if we are able to reject the null hypot
 
 > The future of BTC price is independent of the past
 
+# Consequences
+
+This has practical implications on the validity of technical analysis of financial markets or any other attempt of forecasting
+
 # Modules
 
 - Load data: download crypto asset prices
