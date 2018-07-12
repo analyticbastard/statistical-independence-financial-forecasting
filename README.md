@@ -1,7 +1,8 @@
 # statistical-independence-financial-forecasting
-Statistical independence for (impossible) financial forecasting
 
-This is the practical material for my presentation for GuideSmiths Spain.
+Reject that technical analysis or other type of financial forecast yield any winnings under statistical independence conditions
+
+This is the practical material for my presentation for GuideSmiths Spain. The presentation and code comments are in Spanish.
 
 # Purpose
 
