@@ -23,7 +23,7 @@ breaklines=true
 \graphicspath{{figs/}}
 
 
-% Entre [], le titre raccourci pour le bas de page, 
+% Entre [], le titre raccourci pour le bas delstset page, 
 % Entre {}, le titre complet pour la page de garde
 \title[]{Independencia estad\'istica: El An\'alisis t\'ecnico de mercados financieros como caso de apofenia social}
 
@@ -114,7 +114,7 @@ breaklines=true
 	\end{block}
 	
 	\begin{exampleblock}{La informaci\'on que aporta una variable sobre la otra es cero}
-		$$MI(X,Y) = \int_{Y}{\int_{\textbf{X}}{ \log{ \frac{p(x,y)}{p(x) p(y)}}p(x,y) dx} dy} $$
+		$$MI(X,Y) = \int_{\textbf{Y}}{\int_{\textbf{X}}{ \log{ \frac{p(x,y)}{p(x) p(y)}}p(x,y) dx} dy} $$
 	\end{exampleblock}
 \end{frame}
 
@@ -171,7 +171,7 @@ breaklines=true
 \begin{frame}[c,containsverbatim]
 \frametitle{Clonado del repositorio}
 	\begin{lstlisting}
-		git clone https://github.com/analyticbastard/statistical-independence-financial-forecasting.git
+git clone https://github.com/analyticbastard/statistical-independence-financial-forecasting.git
 	\end{lstlisting}
 		
 \end{frame}
@@ -199,7 +199,7 @@ breaklines=true
 	\begin{exampleblock}{Usar el kernel trick}
 		\begin{itemize}
 		\item Los RKHS son suficientemente grandes en C (densos en $L^2$)
-		\item Pueden extenderse m\'etodos basados en producto interior
+		\item Pueden extenderse m\'etodos basados en producto interior (PCA, CCA, SVM...)
 		\end{itemize}
 	\end{exampleblock}
 \end{frame}
@@ -208,8 +208,8 @@ breaklines=true
 	\frametitle{Reproducing Kernel Hilbert Space}
 	\begin{block}{Espacio de funciones generado de manera especial}
 		\begin{itemize}
-		\item $k(x,y)$ p.s.d. es el kernel del espacio $\mathbf{H}_k$
-		\item Delta de Dirac (funcional de evaluaci\'on puntual) son funciones en $\mathbf{H}_k$: Se fija un par\'ametro del kernel: $k_x = k(x,\cdot)$. $f \in \mathbf{H}_k$, $f(x) = \langle f, k_x \rangle = \sum_{i=0}^{\infty}{\alpha_i k(x_i, x)}$
+		\item $k(x,y)$ p.s.d. es el kernel del espacio $\mathbf{H}_k$. Se fija un par\'ametro del kernel: $k_x = k(x,\cdot)$. $f \in \mathbf{H}_k$, $f(x) = \langle f, k_x \rangle = \sum_{i=0}^{\infty}{\alpha_i k(x_i, x)}$: Delta de Dirac (funcional de evaluaci\'on puntual) $k_x \in \mathbf{H}_k$
+		\item Para cada dato $x$, $\mathbf{H}_k$ asocia una imagen $\Phi: \mathbf{X} \rightarrow \mathbf{H}_k, \Phi(x) = k_x$.
 		\item Aproximaci\'on finita: Para un conjunto de datos $(x_1, x_2, \ldots, x_n)$, $K$ es la matriz kernel evaluando la funci\'on $k$ en los pares de puntos, $K_{ij} = k(x_i,x_j)$
 		\end{itemize}
 	\end{block}
@@ -219,14 +219,14 @@ breaklines=true
 	\frametitle{Correlaciones can\'onicas}
 	\begin{block}{Buscar subespacios ortogonales de m\'axima correlaci\'on}
 		\begin{itemize}
-		\item Subespacio de m\'axima correlacion: $$\max_{\alpha1\in\mathbf{R}^N, \beta_1\in\mathbf{R}^M}{\mbox{corr}(X\alpha_1, Y\beta_1)}$$
+		\item Subespacio de m\'axima correlacion: $$\max_{\alpha_1\in\mathbf{R}^N, \beta_1\in\mathbf{R}^M}{\mbox{corr}(X\alpha_1, Y\beta_1)}$$
 		\item Siguiente par: igual, sujeto a $\alpha_1 \perp \alpha_2$ y $\beta_1 \perp \beta_2$
 		\item $X$ e $Y$ pueden tener diferente dimensi\'on
 		\end{itemize}
 	\end{block}	
 	\begin{block}{Correlaciones can\'onicas con kernel trick}
 		$$
-		\max_{\alpha, \beta} \frac{\alpha^T K_x K_y \beta}{\sqrt{\alpha^T K_x^2 \alpha} \sqrt{\beta^T K_y^2 \beta}}
+		\max_{\alpha_1\in\mathbf{R}^N, \beta_1\in\mathbf{R}^M} \frac{\alpha^T K_x K_y \beta}{\sqrt{\alpha^T K_x^2 \alpha} \sqrt{\beta^T K_y^2 \beta}}
 		$$
 	\end{block}
 \end{frame}
@@ -241,7 +241,7 @@ breaklines=true
 \begin{frame}%[c,containsverbatim]
 \frametitle{ForeCA}
 	\begin{block}{ForeCA}
-		Forecastable Components Analysis, data una serie temporal, ForeCA calcula un componente predecible y una serie residuo de ruido ortogonal a este, para lo que usa la entrop\'ia de Shannon de una m\'etrica particular (aproximaci\'on de la informaci\'on m\'utua)
+		Forecastable Components Analysis, dada una serie temporal, ForeCA calcula un componente predecible y una serie residuo de ruido ortogonal a este, para lo que usa la entrop\'ia de Shannon de una m\'etrica particular (aproximaci\'on de la informaci\'on mutua)
 	\end{block}
 	
 	\url{https://arxiv.org/abs/1205.4591}
