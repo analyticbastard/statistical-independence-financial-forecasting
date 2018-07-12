@@ -1,0 +1,324 @@
+	% Author : Pierre-Henri Horrein
+% Copyright : Telecom Bretagne, 2013
+
+% Définition du document
+\documentclass[t,9pt,pdftex]{beamer}
+\usetheme{tb}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{amsmath}
+%\usepackage[spanish]{babel}
+%\setbeamertemplate{navigation symbols}[horizontal]
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\graphicspath{{figs/}}
+
+
+% Entre [], le titre raccourci pour le bas de page, 
+% Entre {}, le titre complet pour la page de garde
+\title[]{Independencia estad\'istica: El An\'alisis t\'ecnico de mercados financieros como caso de apofenia social}
+
+% Nom de l'auteur
+\author{Javier Arriero Pais}
+
+% Date de la présentation (bas de page)
+\date{13/07/2018}
+
+
+\begin{document}
+
+%---------- Titre -----------
+
+% Création de la page de garde à partir des informations précédentes
+\inserttitlepage
+
+
+%---- Table des matières ----
+
+% Une slide d'agenda
+\begin{frame}[c]
+	\frametitle{Agenda}
+	% Plusieurs choix possibles (décommenter le choix sélectionné, commenter les
+	% autres):
+	% Uniquement les sections principales : 
+	\tableofcontents[hideallsubsections]
+	% Sections et sous sections : 
+	%\tableofcontents
+\end{frame}
+
+
+\section{Definici\'on}
+
+% On peut rappeler le plan à chaque début de section ou même de sous-section. La position de cette
+% commande est importante : si on la met avant la première section, elle
+% apparaîtra dans la présentation avant la première section
+
+%\AtBeginSubsection[] {
+%\AtBeginSection[] {
+% \begin{frame}[c]
+% \frametitle{Sommaire}
+%   \small \tableofcontents[hideallsubsections,sectionstyle=show/shaded,subsectionstyle=hide/hide/hide ]
+% \end{frame}
+%}
+
+\begin{frame}[c]
+	\frametitle{Definici\'on}
+	\begin{itemize}
+		\item $P(X,Y) = P(X)P(Y)$
+		\item $\varphi_{X,Y}(s,t) = \varphi_X(s)\varphi_Y(t)$
+		\item $MI(X,Y)=0$
+		\item $corr(f(X), g(Y))=0$, $\forall f \in C_X$, $\mbox{} g \in C_Y$
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[c]
+	\frametitle{Definici\'on probabil\'istica}
+	\begin{block}{Independencia}
+		$$P(X,Y) = P(X)P(Y)$$
+	\end{block}
+	\begin{exampleblock}{Condicionar no afecta}
+		$$P(X|Y)=P(X)$$
+		$$P(Y|X)=P(Y)$$
+	\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}[c]
+	\frametitle{Definici\'on arm\'onica}
+	\begin{block}{Independencia}
+		$$\varphi_{X,Y}(s,t) = \varphi_X(s)\varphi_Y(t)$$
+	\end{block}
+	
+	\begin{exampleblock}{Transformada de Fourier de la funci\'on de densidad de probabilidad}
+		$$\varphi_X(s) = \int_{\textbf{X}}{e^{-i s x} p(x)dx} $$
+	\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}[c]
+	\frametitle{Definici\'on bajo la teor\'ia de la informaci\'on}
+	\begin{block}{Independencia}
+		$$MI(X,Y)=0$$
+	\end{block}
+	
+	\begin{exampleblock}{La informaci\'on que aporta una variable sobre la otra es cero}
+		$$MI(X,Y) = \int_{Y}{\int_{\textbf{X}}{ \log{ \frac{p(x,y)}{p(x) p(y)}}p(x,y) dx} dy} $$
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[c]
+	\frametitle{Definici\'on funcional}
+	\begin{block}{Independencia}
+		$$corr(f(X), g(Y))=0, \mbox{} \forall f \in C_X, \mbox{} g \in C_Y$$
+	\end{block}
+	
+	\begin{exampleblock}{No existe un par de transformaciones que hagan correlar las variables}
+		$$corr(f(X), g(Y)) = \frac {Cov(f(X), g(Y))}{\sqrt{Var(f(X))} \sqrt{Var(g(Y))}} $$
+	\end{exampleblock}
+\end{frame}
+
+
+\section{Predicci\'on de series temporales}
+
+\begin{frame}[c]
+	\frametitle{Predicci\'on de series temporales}
+	\begin{block}{Procesos estoc\'asticos}
+		$$... X_{t-2}, X_{t-1}, X_{t}, X_{t+1}, X_{t+2}, ...$$
+	\end{block}
+	
+	\begin{exampleblock}{Modelos autorregresivos}
+		$$X(t+1)=f(X(t), \epsilon)$$
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[c]
+	\frametitle{Informaci\'on del futuro en el presente}	
+	\begin{block}{Hip\'otesis}
+		\begin{itemize}
+		\item $X(t)$ contiene informaci\'on sobre $X(t+1)$
+		\item $X(t)$ y $X(t+1)$ no son independientes
+		\end{itemize}
+	\end{block}
+	
+	\begin{exampleblock}{Rechazar uno de los siguientes}
+		\begin{itemize}
+		\item $P(X(t+1),X(t)) = P(X(t+1))P(X(t))$
+		\item $\varphi_{X(t+1),X(t)}(r,s) = \varphi_{X(t+1)}(r)\varphi_{X(t)}(s)$
+		\item $MI(X(t+1),X(t))=0$
+		\item $corr(f(X(t+1)), g(X(t))) = 0$, $\forall f \in C_{X(t+1)}$, $g \in C_{X(t)}$
+		\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+
+\section{T\'ecnicas para medir la dependencia estad\'istica}
+
+
+\begin{frame}[c,containsverbatim]
+\frametitle{Clonado del repositorio}
+	\begin{lstlisting}
+		git clone https://github.com/analyticbastard/statistical-independence-financial-forecasting.git
+	\end{lstlisting}
+		
+\end{frame}
+
+\begin{frame}[c,containsverbatim]
+\frametitle{Sesi\'on pr\'actica: Instalaci\'on de paquetes de CRAN y carga de datos}
+	Abrir el fichero \texttt{load-data.R}
+		
+\end{frame}
+
+\begin{frame}[c,containsverbatim]
+\frametitle{Correlaci\'on lineal: Sesi\'on pr\'actica}
+	Abrir el fichero \texttt{linear.R}
+\end{frame}
+
+
+\begin{frame}[c]
+	\frametitle{Kernel CCA}
+	$$corr(f(X), g(Y))=0$$
+	\begin{block}{Generar infinitas combinaciones de funciones en $C_X$ y $C_Y$ para probar}
+		\begin{itemize}
+		\item Imposible
+		\end{itemize}
+	\end{block}	
+	\begin{exampleblock}{Usar el kernel trick}
+		\begin{itemize}
+		\item Los RKHS son suficientemente grandes en C (densos en $L^2$)
+		\item Pueden extenderse m\'etodos basados en producto interior
+		\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Reproducing Kernel Hilbert Space}
+	\begin{block}{Espacio de funciones generado de manera especial}
+		\begin{itemize}
+		\item $k(x,y)$ p.s.d. es el kernel del espacio $\mathbf{H}_k$
+		\item Delta de Dirac (funcional de evaluaci\'on puntual) son funciones en $\mathbf{H}_k$: Se fija un par\'ametro del kernel: $k_x = k(x,\cdot)$. $f \in \mathbf{H}_k$, $f(x) = \langle f, k_x \rangle = \sum_{i=0}^{\infty}{\alpha_i k(x_i, x)}$
+		\item Aproximaci\'on finita: Para un conjunto de datos $(x_1, x_2, \ldots, x_n)$, $K$ es la matriz kernel evaluando la funci\'on $k$ en los pares de puntos, $K_{ij} = k(x_i,x_j)$
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Correlaciones can\'onicas}
+	\begin{block}{Buscar subespacios ortogonales de m\'axima correlaci\'on}
+		\begin{itemize}
+		\item Subespacio de m\'axima correlacion: $$\max_{\alpha1\in\mathbf{R}^N, \beta_1\in\mathbf{R}^M}{\mbox{corr}(X\alpha_1, Y\beta_1)}$$
+		\item Siguiente par: igual, sujeto a $\alpha_1 \perp \alpha_2$ y $\beta_1 \perp \beta_2$
+		\item $X$ e $Y$ pueden tener diferente dimensi\'on
+		\end{itemize}
+	\end{block}	
+	\begin{block}{Correlaciones can\'onicas con kernel trick}
+		$$
+		\max_{\alpha, \beta} \frac{\alpha^T K_x K_y \beta}{\sqrt{\alpha^T K_x^2 \alpha} \sqrt{\beta^T K_y^2 \beta}}
+		$$
+	\end{block}
+\end{frame}
+
+\begin{frame}[c,containsverbatim]
+\frametitle{KCCA: Sesi\'on pr\'actica}
+	Abrir el fichero \texttt{kcca.R}
+		
+\end{frame}
+
+
+\begin{frame}%[c,containsverbatim]
+\frametitle{ForeCA}
+	\begin{block}{ForeCA}
+		Forecastable Components Analysis, data una serie temporal, ForeCA calcula un componente predecible y una serie residuo de ruido ortogonal a este, para lo que usa la entrop\'ia de Shannon de una m\'etrica particular (aproximaci\'on de la informaci\'on m\'utua)
+	\end{block}
+	
+	\url{https://arxiv.org/abs/1205.4591}
+		
+\end{frame}
+
+
+\begin{frame}[c,containsverbatim]
+\frametitle{ForeCA: Sesi\'on pr\'actica}
+	Abrir el fichero \texttt{foreca.R}
+		
+\end{frame}
+
+
+
+
+\section{An\'alisis t\'ecnico}
+
+\begin{frame}[c]
+	\frametitle{Indicadores y estad\'isticos t\'ecnicos}
+	
+	\begin{block}{Forma general}
+		$$g(X_{t+n_1}, X_{t+n_2}, \ldots, X_{t+n_N})
+	 = f(X_{t-i_1}, X_{t-i_2}, \ldots, X_{t-i_L})$$		
+	\end{block}
+	
+	\begin{exampleblock}{Pero...}
+		... hemos visto que las $X_j$ son (cuasi) independientes entre ellas  
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\section{Conclusiones}
+
+\begin{frame}[c]
+	\frametitle{Conclusiones}
+	
+		\begin{itemize}
+		\item Ni el an\'alisis t\'ecnico ni una red neuronal pueden predecir futuros precios
+		\item No free lunch ilustrado estad\'isticamente
+		\item Para un problema de ML: Pensar antes de disparar
+		\item $... X_{t-2}, X_{t-1}, X_{t}, X_{t+1}, X_{t+2}, ...$ es estacionario
+		\item ML para rebalanceo de portfolio: M\'as all\'a de Markowitz
+		\item Jim Simmons, Rentec, Medallion Fund
+		\end{itemize}
+	
+\end{frame}
+
+
+
+%\begin{frame}[c]
+%	\frametitle{Deux colonnes}
+%	\begin{columns}
+%		\begin{column}[c]{.4\textwidth}
+%			% L'environnement figure est nécessaire ici
+%			\begin{figure}
+%				\centering
+%				\includegraphics[width=.9\textwidth]{Modele/bretagne_quadri}
+%			\end{figure}
+%		\end{column}
+%		\begin{column}[c]{.6\textwidth}
+%			\begin{itemize}
+%					\vfill
+%				\item on peut par exemple décrire l'image à gauche
+%					\vfill
+%				\item ou comparer deux colonnes
+%					\vfill
+%			\end{itemize}
+%		\end{column}
+%	\end{columns}
+%\end{frame}
+
+
+
+
+
+
+\end{document}
