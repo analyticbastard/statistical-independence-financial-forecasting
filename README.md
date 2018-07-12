@@ -1,6 +1,8 @@
 # statistical-independence-financial-forecasting
 Statistical independence for (impossible) financial forecasting
 
+This is the practical material for my presentation for GuideSmiths Spain.
+
 # Purpose
 
 Try to reject the null hypothesis that
