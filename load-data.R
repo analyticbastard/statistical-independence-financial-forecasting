@@ -1,4 +1,4 @@
-install.packages(c("ForeCA", "hsicCCA", "crypto"))
+install.packages(c("ForeCA", "kernlab", "crypto"))
 
 library(crypto)
 
