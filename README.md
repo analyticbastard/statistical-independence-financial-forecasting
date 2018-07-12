@@ -1,12 +1,12 @@
 # statistical-independence-financial-forecasting
 
-Reject that technical analysis or other type of financial forecast yield any winnings under statistical independence conditions
+Check whether the series of cryptocurrency prices are forecastable by studying the statistical dependence of their stochastic process.
 
 This is the practical material for my presentation for GuideSmiths Spain. The presentation and code comments are in Spanish.
 
-# Purpose
+# Methodology
 
-Try to reject the null hypothesis that
+The BTC price timeseries is forecastable if we are able to reject the null hypothesis that
 
 > The future of BTC price is independent of the past
 
